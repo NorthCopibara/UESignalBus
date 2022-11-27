@@ -1,0 +1,24 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "SignalBus",
+	"Description": "",
+	"Category": "Other",
+	"CreatedBy": "NorthCapybara",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": true,
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "SignalBus",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	]
+}
