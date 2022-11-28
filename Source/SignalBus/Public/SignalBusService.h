@@ -36,6 +36,7 @@ public:
 		
 		if(Signals.Contains(T::StaticStruct()->GetName()))
 		{
+			UE_LOG(LogTemp, Warning, TEXT("Test add signal"))
 			Signal = Signals[T::StaticStruct()->GetName()];
 		}
 
@@ -60,6 +61,7 @@ public:
 			const auto Signal = Signals[T::StaticStruct()->GetName()];
 			for (auto SignalContext : Signal.SignalsContexts)
 			{
+				//TODO: check valid signal
 				SignalContext.Context->ProcessEvent(SignalContext.Func.Get(), OutData);
 			}
 		}
