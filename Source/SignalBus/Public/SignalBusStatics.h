@@ -34,6 +34,19 @@ public:
 		SignalBus->Send(SignalType, SignalData);
 	}
 
+	template<typename T>
+	static void Remove(const UObject* WorldContext, const FName FuncName)
+	{
+		const auto SignalBus = GetSignalBus(WorldContext);
+		SignalBus->Remove<T>(FuncName);
+	}
+
+	static void Remove(const UObject* WorldContext, const FName FuncName, const UScriptStruct* SignalType)
+	{
+		const auto SignalBus = GetSignalBus(WorldContext);
+		SignalBus->Remove(FuncName, SignalType);
+	}
+
 private:
 	static USignalBusService* GetSignalBus(const UObject* WorldContext)
 	{
