@@ -8,6 +8,33 @@
 class SignalBusStatics
 {
 public:
+	template <typename T>
+	static void Bind(UObject* WorldContext, FName FuncName)
+	{
+		const auto SignalBus = GetSignalBus(WorldContext);
+		SignalBus->Bind<T>(WorldContext, FuncName);
+	}
+
+	static void Bind(UObject* WorldContext, FName FuncName, const UScriptStruct* SignalType)
+	{
+		const auto SignalBus = GetSignalBus(WorldContext);
+		SignalBus->Bind(WorldContext, FuncName, SignalType);
+	}
+
+	template <typename T>
+	static void Send(UObject* WorldContext, T SignalData)
+	{
+		const auto SignalBus = GetSignalBus(WorldContext);
+		SignalBus->Send<T>(SignalData);
+	}
+
+	static void Send(const UObject* WorldContext, const UScriptStruct* SignalType, void* SignalData)
+	{
+		const auto SignalBus = GetSignalBus(WorldContext);
+		SignalBus->Send(SignalType, SignalData);
+	}
+
+private:
 	static USignalBusService* GetSignalBus(const UObject* WorldContext)
 	{
 		const auto World = WorldContext->GetWorld();
@@ -21,19 +48,5 @@ public:
 		checkf(SignalBusComponent, TEXT("Curent game mode hasn't signal bus interface"))
 
 		return SignalBusComponent->GetSignalBus();
-	}
-
-	template <typename T>
-	static void Bind(UObject* WorldContext, FName FuncName)
-	{
-		const auto SignalBus = GetSignalBus(WorldContext);
-		SignalBus->Bind<T>(WorldContext, FuncName);
-	}
-
-	template <typename T>
-	static void Send(UObject* WorldContext, T SignalData)
-	{
-		const auto SignalBus = GetSignalBus(WorldContext);
-		SignalBus->Send<T>(SignalData);
 	}
 };
