@@ -8,11 +8,11 @@
 class SignalBusStatics
 {
 public:
-	template <typename T>
+	template <typename SignalType>
 	static void Bind(UObject* WorldContext, FName FuncName)
 	{
 		const auto SignalBus = GetSignalBus(WorldContext);
-		SignalBus->Bind<T>(WorldContext, FuncName);
+		SignalBus->Bind<SignalType>(WorldContext, FuncName);
 	}
 
 	static void Bind(UObject* WorldContext, FName FuncName, const UScriptStruct* SignalType)
@@ -47,7 +47,6 @@ public:
 		SignalBus->Remove(FuncName, SignalType);
 	}
 
-private:
 	static USignalBusService* GetSignalBus(const UObject* WorldContext)
 	{
 		const auto World = WorldContext->GetWorld();

@@ -8,7 +8,7 @@ UCLASS()
 class SIGNALBUS_API USignalBusBPLibrary : public UBlueprintFunctionLibrary
 {
 	GENERATED_BODY()
-
+/*
 	UFUNCTION(
 		BlueprintCallable,
 		meta = (Keywords = "Bind function to signal bus", WorldContext = "WorldContext"),
@@ -16,7 +16,7 @@ class SIGNALBUS_API USignalBusBPLibrary : public UBlueprintFunctionLibrary
 	static void BindSignal(UObject* WorldContext, const UScriptStruct* SignalType, FName FunctionName)
 	{
 		SignalBusStatics::Bind(WorldContext, FunctionName, SignalType);
-	}
+	}*/
 
 	UFUNCTION(
 		BlueprintCallable,

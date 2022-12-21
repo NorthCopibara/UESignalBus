@@ -8,6 +8,8 @@
 
 DEFINE_LOG_CATEGORY_STATIC(LogSignalBus, All, All);
 
+#define BindSignal(UserObject, FuncName) Bind(UserObject, FuncName, STATIC_FUNCTION_FNAME(TEXT(#FuncName)))
+
 USTRUCT(BlueprintType)
 struct FSignalContext
 {
@@ -31,6 +33,12 @@ class SIGNALBUS_API USignalBusService : public UObject
 	GENERATED_BODY()
 
 public:
+	template <class ObjectType, typename SignalType>
+	void Bind(UObject* WorldContext, void(ObjectType::*Funk)(SignalType Signal), FName FuncName)
+	{
+		Bind<SignalType>(WorldContext, FuncName);
+	}
+	
 	template <typename T>
 	void Bind(UObject* Context, FName FuncName)
 	{
