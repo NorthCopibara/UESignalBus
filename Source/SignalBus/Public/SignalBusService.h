@@ -126,25 +126,18 @@ public:
 private:
 	void RemoveFunction(FString SignalName, FName FuncName)
 	{
-		if (Signals.Contains(SignalName) && Signals[SignalName].SignalsContexts.Contains(FuncName))
-		{
-			Signals[SignalName].SignalsContexts.Remove(FuncName);
-			if (Signals[SignalName].SignalsContexts.Num() == 0)
-			{
-				RemoveSignal(SignalName);
-			}
-		}
+		if (!Signals.Contains(SignalName) || !Signals[SignalName].SignalsContexts.Contains(FuncName)) return;
+		Signals[SignalName].SignalsContexts.Remove(FuncName);
+		if (Signals[SignalName].SignalsContexts.Num() == 0)
+			RemoveSignal(SignalName);
 	}
 
 	void RemoveSignal(FString SignalName)
 	{
 		if (Signals.Contains(SignalName))
-		{
 			Signals.Remove(SignalName);
-		}
 	}
 
-private:
 	UPROPERTY()
 	TMap<FString, FSignal> Signals;
 };
