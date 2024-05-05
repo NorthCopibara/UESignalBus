@@ -1,6 +1,6 @@
 ﻿#pragma once
 #include "SignalBusStatics.h"
-#include "Engine/Classes/Kismet/KismetSystemLibrary.h"
+#include "Kismet/KismetSystemLibrary.h"
 
 #include "SignalBusBPLibrary.generated.h"
 
@@ -35,7 +35,7 @@ class SIGNALBUS_API USignalBusBPLibrary : public UBlueprintFunctionLibrary
 	FORCEINLINE static void Generic_SendSignal(const UObject* WorldContext, const UScriptStruct* SignalType,
 	                                           void* SignalData)
 	{
-		SignalBusStatics::Send(WorldContext, SignalType, SignalData);
+		//SignalBusStatics::Send(WorldContext, SignalType, SignalData);
 	}
 
 	DECLARE_FUNCTION(execSendSignal)
